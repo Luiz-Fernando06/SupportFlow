@@ -23,7 +23,7 @@ public class Chamado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 150)
     private String titulo;
 
     @Column(nullable = false, length = 1000)

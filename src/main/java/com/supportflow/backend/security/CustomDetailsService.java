@@ -18,6 +18,6 @@ public class CustomDetailsService implements UserDetailsService{
     public UserDetails pegarUmUsuarioPeloNome(String email) throws UsernameNotFoundException {
         return usuarioRepository
                 .findUsuarioByEmail(email)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuario não encontrado!"));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
     }
 }

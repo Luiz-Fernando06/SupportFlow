@@ -1,0 +1,45 @@
+package com.supportflow.backend.service;
+
+import com.supportflow.backend.dto.response.CategoriaResponse;
+import com.supportflow.backend.exception.CategoriaNaoEncontradaException;
+import com.supportflow.backend.model.Categoria;
+import com.supportflow.backend.repository.CategoriaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class CategoriaService {
+
+    private final CategoriaRepository categoriaRepository;
+
+    public List<CategoriaResponse> listarTodas() {
+
+        List<Categoria> categorias = categoriaRepository.findAll();
+
+        List<CategoriaResponse> respostas = new ArrayList<>();
+
+        for (Categoria categoria : categorias) {
+            respostas.add(
+                    new CategoriaResponse(
+                            categoria.getId(),
+                            categoria.getNome(),
+                            categoria.getDescricao()
+                    )
+            );
+
+        }
+        return respostas;
+    }
+
+    public Categoria buscarPorId(Long id) {
+
+        return categoriaRepository.findById(id).orElseThrow(() ->
+                new CategoriaNaoEncontradaException("Categoria com o id " + id + " não encontrada."));
+
+    }
+
+}

@@ -34,7 +34,7 @@ public class Mensagem {
     @JoinColumn(name = "remetente_id", nullable = false)
     private Usuario remetente;
 
-    @Column(length = 2000)
+    @Column(nullable = false, length = 2000)
     private String conteudo;
 
     @CreationTimestamp

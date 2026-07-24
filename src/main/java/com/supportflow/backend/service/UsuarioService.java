@@ -11,7 +11,9 @@ import com.supportflow.backend.model.Usuario;
 import com.supportflow.backend.repository.UsuarioRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -28,7 +30,7 @@ public class UsuarioService {
             throw new EmailJaCadastradoException("Email já cadastrado!");
         }
 
-        usuario.setEmail(request.email());
+        usuario.setEmail(request.email().trim());
         usuarioRepository.save(usuario);
 
         return respostaDe(usuario);
@@ -36,7 +38,7 @@ public class UsuarioService {
 
     public UsuarioResponse atualizarNome(AtualizarNomeRequest request) {
         Usuario usuario = usuarioLogado();
-        usuario.setNome(request.nome());
+        usuario.setNome(request.nome().trim());
         usuarioRepository.save(usuario);
         return respostaDe(usuario);
     }
