@@ -25,11 +25,14 @@ public class MensagemService {
 
     private final MensagemRepository mensagemRepository;
     private final UsuarioRepository usuarioRepository;
+    private final SalaDeAtendimentoService salaDeAtendimentoService;
 
     public MensagemResponse enviar(
-            SalaDeAtendimento sala,
+            Long salaId,
             EnviarMensagemRequest request
     ) {
+
+        SalaDeAtendimento sala = salaDeAtendimentoService.buscarPorId(salaId);
 
         if (!sala.isAtiva()) {
             throw new RegraDeNegocioException(
@@ -53,7 +56,10 @@ public class MensagemService {
     }
 
     public List<MensagemResponse> listar(
-            SalaDeAtendimento sala) {
+            Long salaId) {
+
+        SalaDeAtendimento sala =
+                salaDeAtendimentoService.buscarPorId(salaId);
 
         Usuario usuario = usuarioLogado();
 

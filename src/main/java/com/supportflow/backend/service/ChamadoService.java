@@ -100,6 +100,12 @@ public class ChamadoService {
 
     public List<ChamadoResponse> listarTodos() {
 
+        Usuario usuario = usuarioLogado();
+
+        if (usuario.getRole() != Role.ADMIN) {
+            throw new RegraDeNegocioException("Acesso permitido apenas para administradores.");
+        }
+
         List<Chamado> chamados =
                 chamadoRepository.findAll();
 
@@ -240,6 +246,7 @@ public class ChamadoService {
         }
 
         chamado.setAdminResponsavel(admin);
+        chamado.setStatus(StatusChamado.EM_ANDAMENTO);
 
         chamadoRepository.save(chamado);
 

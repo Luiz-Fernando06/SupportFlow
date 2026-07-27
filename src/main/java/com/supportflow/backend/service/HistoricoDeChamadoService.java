@@ -2,11 +2,15 @@ package com.supportflow.backend.service;
 
 import com.supportflow.backend.dto.response.HistoricoChamadoResponse;
 import com.supportflow.backend.dto.response.UsuarioResponse;
+import com.supportflow.backend.enums.Role;
 import com.supportflow.backend.enums.StatusChamado;
+import com.supportflow.backend.exception.AcessoNegadoException;
+import com.supportflow.backend.exception.ChamadoNaoEncontradoException;
 import com.supportflow.backend.exception.UsuarioNaoEncontradoException;
 import com.supportflow.backend.model.Chamado;
 import com.supportflow.backend.model.HistoricoDeChamado;
 import com.supportflow.backend.model.Usuario;
+import com.supportflow.backend.repository.ChamadoRepository;
 import com.supportflow.backend.repository.HistoricoDeChamadoRepository;
 import com.supportflow.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +26,7 @@ public class HistoricoDeChamadoService {
 
     private final HistoricoDeChamadoRepository historicoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final ChamadoRepository chamadoRepository;
 
     public HistoricoChamadoResponse registrar(
             Chamado chamado,
@@ -43,7 +48,20 @@ public class HistoricoDeChamadoService {
         return respostaDe(historico);
     }
 
-    public List<HistoricoChamadoResponse> listarPorChamado(Chamado chamado) {
+    public List<HistoricoChamadoResponse> listarPorChamado(Long chamadoId) {
+
+        Chamado chamado = chamadoRepository.findById(chamadoId)
+                .orElseThrow(() ->
+                        new ChamadoNaoEncontradoException("Chamado não encontrado."));
+
+        Usuario usuario = usuarioLogado();
+
+        if (usuario.getRole() != Role.ADMIN &&
+                !chamado.getUsuario().getId().equals(usuario.getId())) {
+
+            throw new AcessoNegadoException(
+                    "Você não possui acesso ao histórico deste chamado.");
+        }
 
         List<HistoricoDeChamado> historicos =
                 historicoRepository.findByChamado(chamado);

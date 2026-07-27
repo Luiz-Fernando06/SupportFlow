@@ -11,6 +11,7 @@ import com.supportflow.backend.model.Usuario;
 import com.supportflow.backend.repository.UsuarioRepository;
 
 import com.supportflow.backend.security.JwtService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,17 @@ public class AuthService {
                 "Bearer",
                 respostaDe(usuario)
         );
+    }
+
+    public UsuarioResponse buscarUsuarioLogado(Authentication authentication){
+
+        String email = authentication.getName();
+
+        Usuario usuario = usuarioRepository.findUsuarioByEmail(email)
+                .orElseThrow(() ->
+                        new UsuarioNaoEncontradoException("Usuário não encontrado."));
+
+        return respostaDe(usuario);
     }
 
     private UsuarioResponse respostaDe(Usuario usuario) {
