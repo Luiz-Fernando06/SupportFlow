@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface HistoricoDeChamadoRepository extends JpaRepository <HistoricoDeChamado, Long> {
 
-    List<HistoricoChamadoResponse> listarPorChamado(Chamado chamado);
-
     List<HistoricoDeChamado> findByChamado(Chamado chamado);
 
 }

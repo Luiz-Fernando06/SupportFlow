@@ -17,11 +17,11 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final CustomDetailsService userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
 
     public JwtAuthenticationFilter(
             JwtService jwtService,
-            CustomDetailsService userDetailsService) {
+            CustomUserDetailsService userDetailsService) {
 
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
@@ -49,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails =
-                    userDetailsService.pegarUmUsuarioPeloNome(email);
+                    userDetailsService.loadUserByUsername(email);
 
             if (jwtService.tokenValido(jwt, userDetails)) {
 
