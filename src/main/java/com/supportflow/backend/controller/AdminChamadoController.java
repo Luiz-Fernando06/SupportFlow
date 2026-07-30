@@ -2,6 +2,9 @@ package com.supportflow.backend.controller;
 
 import com.supportflow.backend.dto.request.AlterarStatusRequest;
 import com.supportflow.backend.dto.response.ChamadoResponse;
+import com.supportflow.backend.enums.Prioridade;
+import com.supportflow.backend.enums.StatusChamado;
+import com.supportflow.backend.model.Categoria;
 import com.supportflow.backend.service.ChamadoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,4 +47,24 @@ public class AdminChamadoController {
         return ResponseEntity.ok(chamadoService.alterarStatus(id, request));
     }
 
+    @GetMapping("/listar_prioridade")
+    public ResponseEntity<List<ChamadoResponse>> listarPorPrioridade(
+            @RequestParam(required = true) Prioridade prioridade)  {
+
+        return ResponseEntity.ok(chamadoService.listarPorPrioridade(prioridade));
+    }
+
+    @GetMapping("/listar_categoria")
+    public ResponseEntity<List<ChamadoResponse>> listarPorCategoria(
+            @RequestParam(required = false) Long categoriaId)  {
+
+        return ResponseEntity.ok(chamadoService.listarPorCategoria(categoriaId));
+    }
+
+    @GetMapping("listar_status")
+    public ResponseEntity<List<ChamadoResponse>> listarPorStatus(
+            @RequestParam(required = false)StatusChamado status) {
+
+        return ResponseEntity.ok(chamadoService.listarPorStatus(status));
+    }
 }
