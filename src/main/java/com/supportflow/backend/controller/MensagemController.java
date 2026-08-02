@@ -17,16 +17,6 @@ public class MensagemController {
 
     private final MensagemService mensagemService;
 
-    @PostMapping
-    public ResponseEntity<MensagemResponse> enviarMensagem(
-            @PathVariable Long salaId,
-            @Valid @RequestBody EnviarMensagemRequest request) {
-
-        return ResponseEntity.ok(
-                mensagemService.enviar(salaId, request)
-        );
-    }
-
     @GetMapping
     public ResponseEntity<List<MensagemResponse>> listarMensagens(
             @PathVariable Long salaId) {
