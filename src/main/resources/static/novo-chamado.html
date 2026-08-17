@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Abrir chamado | SupportFlow</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="pagina-sistema">
+
+<header class="cabecalho-sistema">
+    <a class="marca marca-painel" href="/painel.html">
+        <span class="marca-icone">SF</span>
+        <span>SupportFlow</span>
+    </a>
+
+    <div class="usuario-cabecalho">
+        <div>
+            <strong>SupportFlow</strong>
+            <span>Usuário autenticado</span>
+        </div>
+
+        <button
+                id="botao-logout"
+                class="botao-sair"
+                type="button"
+        >
+            Sair
+        </button>
+    </div>
+</header>
+
+<div class="layout-sistema">
+
+    <aside class="menu-lateral">
+        <nav>
+            <a class="menu-item" href="/painel.html">
+                Início
+            </a>
+
+            <a class="menu-item" href="/chamados.html">
+                Meus chamados
+            </a>
+
+            <a
+                    class="menu-item ativo"
+                    href="/novo-chamado.html"
+            >
+                Abrir chamado
+            </a>
+        </nav>
+    </aside>
+
+    <main class="conteudo-sistema">
+
+        <section class="titulo-pagina">
+            <div>
+                    <span class="etiqueta-pagina">
+                        Novo atendimento
+                    </span>
+
+                <h1>Abrir chamado</h1>
+
+                <p>
+                    Descreva o problema para solicitar atendimento.
+                </p>
+            </div>
+        </section>
+
+        <section class="cartao-formulario-chamado">
+
+            <form id="formulario-chamado">
+
+                <div class="campo">
+                    <label for="titulo">
+                        Título do chamado
+                    </label>
+
+                    <input
+                            id="titulo"
+                            name="titulo"
+                            type="text"
+                            placeholder="Ex.: Computador sem internet"
+                            required
+                    >
+                </div>
+
+                <div class="grade-formulario">
+
+                    <div class="campo">
+                        <label for="categoria">
+                            Categoria
+                        </label>
+
+                        <select
+                                id="categoria"
+                                name="categoria"
+                                required
+                                disabled
+                        >
+                            <option value="">
+                                Carregando categorias...
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="prioridade">
+                            Prioridade
+                        </label>
+
+                        <select
+                                id="prioridade"
+                                name="prioridade"
+                                required
+                        >
+                            <option value="">
+                                Selecione uma prioridade
+                            </option>
+
+                            <option value="BAIXA">
+                                Baixa
+                            </option>
+
+                            <option value="MEDIA">
+                                Média
+                            </option>
+
+                            <option value="ALTA">
+                                Alta
+                            </option>
+
+                            <option value="URGENTE">
+                                Urgente
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">
+                        Descrição do problema
+                    </label>
+
+                    <textarea
+                            id="descricao"
+                            name="descricao"
+                            rows="7"
+                            placeholder="Explique o que está acontecendo e quando o problema começou."
+                            required
+                    ></textarea>
+                </div>
+
+                <p
+                        id="mensagem-formulario"
+                        class="mensagem-formulario"
+                        aria-live="polite"
+                ></p>
+
+                <div class="acoes-formulario">
+                    <a
+                            class="botao-secundario"
+                            href="/chamados.html"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                            id="botao-enviar"
+                            class="botao-acao"
+                            type="submit"
+                    >
+                        Abrir chamado
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/novo-chamado.js"></script>
+</body>
+</html>

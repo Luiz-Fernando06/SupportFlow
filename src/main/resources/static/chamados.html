@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Meus chamados | SupportFlow</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="pagina-sistema">
+
+<header class="cabecalho-sistema">
+    <a class="marca marca-painel" href="/painel.html">
+        <span class="marca-icone">SF</span>
+        <span>SupportFlow</span>
+    </a>
+
+    <div class="usuario-cabecalho">
+        <div>
+            <strong id="nome-cabecalho">
+                SupportFlow
+            </strong>
+
+            <span>Usuário autenticado</span>
+        </div>
+
+        <button
+                id="botao-logout"
+                class="botao-sair"
+                type="button"
+        >
+            Sair
+        </button>
+    </div>
+</header>
+
+<div class="layout-sistema">
+
+    <aside class="menu-lateral">
+        <nav>
+            <a class="menu-item" href="/painel.html">
+                Início
+            </a>
+
+            <a
+                    class="menu-item ativo"
+                    href="/chamados.html"
+            >
+                Meus chamados
+            </a>
+
+            <a
+                    class="menu-item"
+                    href="/novo-chamado.html"
+                    id="link-novo-chamado"
+            >
+                Abrir chamado
+            </a>
+        </nav>
+    </aside>
+
+    <main class="conteudo-sistema">
+
+        <section class="titulo-pagina titulo-com-acao">
+            <div>
+                    <span class="etiqueta-pagina">
+                        Atendimento
+                    </span>
+
+                <h1>Meus chamados</h1>
+
+                <p>
+                    Acompanhe os chamados abertos por você.
+                </p>
+            </div>
+
+            <button
+                    id="botao-novo-chamado"
+                    class="botao-acao"
+                    type="button"
+            >
+                Abrir chamado
+            </button>
+        </section>
+
+        <section
+                id="mensagem-pagina"
+                class="mensagem-pagina"
+                aria-live="polite"
+        ></section>
+
+        <section
+                id="estado-carregamento"
+                class="estado-lista"
+        >
+            <div class="carregador"></div>
+            <p>Carregando chamados...</p>
+        </section>
+
+        <section
+                id="estado-vazio"
+                class="estado-lista oculto"
+        >
+            <h2>Nenhum chamado encontrado</h2>
+
+            <p>
+                Você ainda não abriu nenhum chamado.
+            </p>
+        </section>
+
+        <section
+                id="lista-chamados"
+                class="lista-chamados"
+        ></section>
+
+    </main>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/chamados.js"></script>
+</body>
+</html>

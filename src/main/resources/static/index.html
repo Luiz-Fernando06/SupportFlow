@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | SupportFlow</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="pagina-autenticacao">
+
+<main class="autenticacao-container">
+
+    <section class="apresentacao-sistema">
+        <div class="marca">
+            <div class="marca-icone">SF</div>
+            <span>SupportFlow</span>
+        </div>
+
+        <div class="apresentacao-conteudo">
+            <span class="etiqueta">Suporte simplificado</span>
+
+            <h1>
+                Atendimento organizado, rápido e em tempo real.
+            </h1>
+
+            <p>
+                Abra chamados, acompanhe o atendimento e converse
+                diretamente com a equipe de suporte.
+            </p>
+
+            <ul class="lista-beneficios">
+                <li>Converse com o suporte em tempo real</li>
+                <li>Consulte todo o histórico do atendimento</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="area-formulario">
+        <div class="formulario-container">
+
+            <div class="formulario-cabecalho">
+                <h2>Login</h2>
+                <p>Acesse sua conta do SupportFlow.</p>
+            </div>
+
+            <form id="formulario-login">
+
+                <div class="campo">
+                    <label for="email">E-mail</label>
+
+                    <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="seuemail@exemplo.com"
+                            autocomplete="email"
+                            required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+
+                    <input
+                            id="senha"
+                            name="senha"
+                            type="password"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                            required
+                    >
+                </div>
+
+                <p
+                        id="mensagem-formulario"
+                        class="mensagem-formulario"
+                        aria-live="polite"
+                ></p>
+
+                <button class="botao botao-primario" type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <p class="texto-cadastro">
+                Ainda não possui uma conta?
+
+                <a href="/cadastro.html">
+                    Cadastre-se
+                </a>
+            </p>
+
+        </div>
+    </section>
+
+</main>
+
+<script src="/js/login.js"></script>
+</body>
+</html>

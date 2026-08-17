@@ -38,9 +38,15 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/",
+                                "/*.html",
+                                "/css/**",
+                                "/js/**",
+                                "/favicon.ico",
                                 "/api/v1/auth/**",
-                                "/ws/**",
-                                "/ws").permitAll()
+                                "/ws",
+                                "/ws/**"
+                        ).permitAll()
                         .anyRequest().authenticated())
 
                 .addFilterBefore(
